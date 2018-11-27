@@ -8,7 +8,10 @@ class PublicController extends Controller
 {
     public function about()
     {
-    	echo "about";
+    	$cities = ['Yerevan', 'Abovyan', 'Armavir'];
+    	$name = 'jack';
+    	$age = '25';
+    	return view('public.about', compact('age', 'cities', 'name'));
     }
 
     public function terms()
