@@ -1,4 +1,4 @@
-@extends('template')
+@extends('layouts.app')
 
 @section('content')
 	@if (Auth::check())
@@ -12,8 +12,4 @@
 		<li>{{ $city }}</li>
 	@endforeach
 	</ul>
-@endsection
-
-@section('title')
-	Hello World
 @endsection
