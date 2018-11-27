@@ -15,7 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('about', 'HomeContr')
+// put patch head delete
+
+Route::get('about', 'PublicController@about');
+Route::get('terms', 'PublicController@terms');
+Route::get('privacy', 'PublicController@privacy');
+Route::get('contact', 'PublicController@contact');
 
 Auth::routes();
 
