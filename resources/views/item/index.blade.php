@@ -10,6 +10,7 @@
                 <div class="row">
                     @foreach($models as $model)
                         <div class="col-sm-3">
+                            <img src="/uploads/{{ $model->thumbnail }}" class="img-fluid">
                             <h4>
                                 <a href="/items/{{ $model->id }}">
                                     {{ $model->title }}
