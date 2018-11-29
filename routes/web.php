@@ -19,6 +19,8 @@ Route::get('privacy', 'PublicController@privacy');
 Route::get('contact', 'PublicController@contact');
 
 Route::get('items', 'ItemController@index');
+Route::post('items', 'ItemController@store');
+Route::get('items/create', 'ItemController@create');
 Route::get('items/{id}', 'ItemController@show');
 
 Auth::routes();

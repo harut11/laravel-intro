@@ -25,7 +25,8 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        $model = new Item();
+        return view('item.create', compact('model'));
     }
 
     /**
@@ -36,7 +37,22 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|string|max:200|min:3',
+            'content' => 'required|string|max:2000|min:3',
+            'thumbnail' => 'image|max:102400',
+        ]);
+        $model = new Item();
+
+        $model->title = $request->get('title');
+        $model->content = $request->get('content');
+        $file = $request->file('thumbnail');
+        $filename = str_random() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('uploads'), $filename);
+        $model->thumbnail = $filename;
+        $model->save();
+
+        return redirect('/items');
     }
 
     /**
