@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', 'PublicController@home');
 Route::get('home', 'PublicController@home')->name('home');
 Route::get('about', 'PublicController@about');
 Route::get('terms', 'PublicController@terms');
