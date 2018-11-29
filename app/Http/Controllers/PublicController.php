@@ -6,27 +6,34 @@ use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('public.home');
+    }
+
     public function about()
     {
-    	$cities = ['Yerevan', 'Abovyan', 'Armavir'];
-    	$name = 'jack';
-    	$age = '25';
-    	return view('public.about', compact('age', 'cities', 'name'));
+    	return view('public.about');
     }
 
     public function terms()
     {
-    	echo "terms and conditions";
+        return view('public.terms');
     }
 
     public function privacy()
     {
-    	echo "privacy policy";
+        return view('public.privacy');
     }
 
     public function contact()
     {
-    	echo "contact us";
+        return view('public.contact');
     }
 
 }

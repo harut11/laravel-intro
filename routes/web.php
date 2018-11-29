@@ -15,13 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// put patch head delete
-
+Route::get('home', 'PublicController@home')->name('home');
 Route::get('about', 'PublicController@about');
 Route::get('terms', 'PublicController@terms');
 Route::get('privacy', 'PublicController@privacy');
 Route::get('contact', 'PublicController@contact');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
