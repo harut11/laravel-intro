@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Item;
 
 class ItemsTableSeeder extends Seeder
 {
@@ -11,12 +12,6 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('items')->insert([
-        	'title' => 'lorem',
-			'content' => 'lorem',
-			'thumbnail' => 'lorem',
-			'created_at' => now(),
-			'updated_at' => now(),
-        ]);
+        factory(App\Models\Item::class, 300)->create();
     }
 }

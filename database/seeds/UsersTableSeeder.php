@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -11,25 +12,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('users')->insert([
-        	[
-				'name' => 'Admin',
-				'email' => 'admin@laravel.com',
-				'email_verified_at' => null,
-				'password' => bcrypt('secret'),
-				'remember_token' => null,
-				'created_at' => now(),
-				'updated_at' => now(),
-	        ],
-	        [
-				'name' => 'Admin 2',
-				'email' => 'admin2@laravel.com',
-				'email_verified_at' => null,
-				'password' => bcrypt('secret'),
-				'remember_token' => null,
-				'created_at' => now(),
-				'updated_at' => now(),
-	        ]
+        User::create([
+			'name' => 'Admin',
+			'email' => 'admin@laravel.com',
+			'password' => bcrypt('secret'),
         ]);
+		factory(App\Models\User::class, 30)->create();
     }
 }
