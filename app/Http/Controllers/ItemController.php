@@ -75,7 +75,8 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $model = \App\Models\Item::findOrFail($id);
+        return view('item.edit', compact('model'));
     }
 
     /**
@@ -87,7 +88,23 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|string|max:200|min:3',
+            'content' => 'required|string|max:200|min:3',
+            'thumbnail' => 'image|max:2048',
+        ]);
+
+        $model = \App\Models\Item::findOrFail($id);
+
+        $model->title = $request->get('title');
+        $model->content = $request->get('content');
+        $file = $request->file('thumbnail');
+        $filename = str_random() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('uploads'), $filename);
+        $model->thumbnail = $filename;
+        $model->save();
+
+        return redirect('/items');
     }
 
     /**
@@ -98,6 +115,8 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $model = \App\Models\Item::findOrFail($id);
+        $model->delete();
+        return redirect('/items');
     }
 }

@@ -17,6 +17,10 @@
                                 </a>
                             </h4>
                             <p>{{ str_limit($model->content, 50) }}</p>
+                            @auth
+                            <a href="items/edit/{{ $model->id }}" class="btn btn-warning">Edit</a>
+                            <a href="items/destroy/{{ $model->id}}" class="btn btn-danger">Delete</a>
+                            @endauth
                         </div>
                     @endforeach
                 </div>

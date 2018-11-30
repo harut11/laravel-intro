@@ -21,6 +21,9 @@ Route::get('contact', 'PublicController@contact');
 Route::get('items', 'ItemController@index');
 Route::post('items', 'ItemController@store');
 Route::get('items/create', 'ItemController@create');
+Route::get('items/edit/{id}', 'ItemController@edit');
+Route::post('items/update{id}', 'ItemController@update');
+Route::get('items/destroy/{id}', 'ItemController@destroy');
 Route::get('items/{id}', 'ItemController@show');
 
 Auth::routes();
