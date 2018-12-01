@@ -11,9 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        \Schema::disableForeignKeyConstraints();
     	\DB::table('users')->truncate();
     	\DB::table('items')->truncate();
         $this->call(UsersTableSeeder::class);
+        $this->call(ItemCategoriesTableSeeder::class);
         $this->call(ItemsTableSeeder::class);
     }
 }
