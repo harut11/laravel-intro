@@ -16,7 +16,7 @@ class CreateItemCategoriesTable extends Migration
         Schema::create('item_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('icon');
+            $table->string('icon')->nullable();
             $table->timestamps();
         });
         Schema::table('items', function(Blueprint $table) {
@@ -35,9 +35,10 @@ class CreateItemCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_categories');
         Schema::table('items', function(Blueprint $table) {
+            $table->dropForeign('items_category_id_foreign');
             $table->dropColumn('category_id');
         });
+        Schema::dropIfExists('item_categories');
     }
 }
