@@ -7,7 +7,7 @@
             <div class="card-header">Edit Item</div>
 
             <div class="card-body">
-                <form action="/items/update{{ $model->id }}" method="post" enctype="multipart/form-data">
+                <form action="/items/update/{{ $model->id }}" method="post" enctype="multipart/form-data">
                 	@csrf
                 	<div class="form-group">
                 		<div class="control-label" for="title">Title</div>

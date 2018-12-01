@@ -104,9 +104,15 @@ class ItemController extends Controller
         $model->title = $request->get('title');
         $model->content = $request->get('content');
         $file = $request->file('thumbnail');
-        $filename = str_random() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('uploads'), $filename);
-        $model->thumbnail = $filename;
+        if ($file) {
+            $filename = str_random() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads'), $filename);
+            $old_file_path = public_path('uploads') . '/' . $model->thumbnail;
+            if (\File::exists($old_file_path)) {
+                \File::delete($old_file_path);
+            }
+            $model->thumbnail = $filename;
+        }
         $model->save();
 
         return redirect('/items');

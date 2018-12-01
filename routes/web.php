@@ -22,7 +22,7 @@ Route::get('items', 'ItemController@index');
 Route::post('items', 'ItemController@store')->middleware('auth');
 Route::get('items/create', 'ItemController@create')->middleware('auth');
 Route::get('items/edit/{id}', 'ItemController@edit');
-Route::post('items/update{id}', 'ItemController@update');
+Route::post('items/update/{id}', 'ItemController@update');
 Route::get('items/destroy/{id}', 'ItemController@destroy');
 Route::get('items/{id}', 'ItemController@show');
 
