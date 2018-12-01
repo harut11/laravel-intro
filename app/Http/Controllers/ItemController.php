@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\ItemCategory;
 
 class ItemController extends Controller
 {
@@ -15,6 +16,7 @@ class ItemController extends Controller
     public function index()
     {
         $models = Item::get();
+
         return view('item.index', compact('models'));
     }
 
@@ -41,11 +43,14 @@ class ItemController extends Controller
             'title' => 'required|string|max:200|min:3',
             'content' => 'required|string|max:2000|min:3',
             'thumbnail' => 'image|max:102400',
+            'category_id' => 'required|in:' . ItemCategory::get()->implode('id', ','),
         ]);
         $model = new Item();
 
         $model->title = $request->get('title');
         $model->content = $request->get('content');
+        $model->owner_id = \Auth::user()->id;
+        $model->category_id = $request->get('category_id');
         $file = $request->file('thumbnail');
         $filename = str_random() . '.' . $file->getClientOriginalExtension();
         $file->move(public_path('uploads'), $filename);
