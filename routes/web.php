@@ -34,5 +34,5 @@ Route::group(['middleware' => 'lang'], function() {
 	Auth::routes();
 });
 
-Route::get('change-language/{code}', 'PublicController@changeLanguage');
+Route::get('change-language/{code}', 'PublicController@changeLanguage')->name('change-language');
 
