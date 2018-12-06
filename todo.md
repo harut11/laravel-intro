@@ -3,7 +3,7 @@
 ### Create functionalities:
 - store small version for images
 - display small images in items listing
-- add edit functionality for items
+- ~~add edit functionality for items~~
 - on update delete old image
 - user can only edit / delete his own items
 - facebook login
@@ -18,18 +18,19 @@
 - model events / observers
 - mail
 - middleware in more examples
-- route groups
+- ~~route groups~~
 - resource routes
+- route names
 - test api endpoints
-- @each, and other blade directives
-- lang examples
+- ~~@each, and other blade directives~~
+- ~~lang examples~~
 - custom console commands
 - events & listeners
 - make:* examine all
 - notification
 - queue
 - schedule
-- ~~~MERGE CONFLICTS~~~
+- ~~MERGE CONFLICTS~~
 
 ### Examine Packages:
 - doctrine/dbal
