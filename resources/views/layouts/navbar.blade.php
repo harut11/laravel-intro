@@ -10,11 +10,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-
             </ul>
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    @if (app()->getLocale() === 'hy')
+                        <a class="nav-link" href="/change-language/en">Eng</a>
+                    @else
+                        <a class="nav-link" href="/change-language/hy">Arm</a>
+                    @endif
+                </li>
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">

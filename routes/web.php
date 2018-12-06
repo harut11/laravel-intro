@@ -11,12 +11,14 @@
 |
 */
 
-Route::get('/', 'PublicController@home');
-Route::get('home', 'PublicController@home')->name('home');
-Route::get('about', 'PublicController@about');
-Route::get('terms', 'PublicController@terms');
-Route::get('privacy', 'PublicController@privacy');
-Route::get('contact', 'PublicController@contact');
+Route::get('/', 'PublicController@home')->middleware(\App\Http\Middleware\SetLocaleMiddleware::class);
+Route::get('home', 'PublicController@home')->name('home')->middleware(\App\Http\Middleware\SetLocaleMiddleware::class);
+Route::get('about', 'PublicController@about')->middleware(\App\Http\Middleware\SetLocaleMiddleware::class);
+Route::get('terms', 'PublicController@terms')->middleware(\App\Http\Middleware\SetLocaleMiddleware::class);
+Route::get('privacy', 'PublicController@privacy')->middleware(\App\Http\Middleware\SetLocaleMiddleware::class);
+Route::get('contact', 'PublicController@contact')->middleware(\App\Http\Middleware\SetLocaleMiddleware::class);
+
+Route::get('change-language/{code}', 'PublicController@changeLanguage');
 
 Route::get('items', 'ItemController@index');
 Route::post('items', 'ItemController@store')->middleware('auth');

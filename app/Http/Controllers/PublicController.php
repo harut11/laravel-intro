@@ -36,4 +36,10 @@ class PublicController extends Controller
         return view('public.contact');
     }
 
+    public function changeLanguage($code)
+    {
+        session()->put('lang', $code);
+        return redirect()->back();
+    }
+
 }

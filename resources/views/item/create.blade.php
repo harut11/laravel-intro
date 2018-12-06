@@ -4,8 +4,7 @@
 <div class="container">
     <div class="justify-content-center">
         <div class="card">
-            <div class="card-header">Create New Item</div>
-
+            <div class="card-header">@lang('content.create_new_item')</div>
             <div class="card-body">
                 <form action="/items" method="post" enctype="multipart/form-data">
                 	@csrf
