@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header">@lang('content.create_new_item')</div>
             <div class="card-body">
-                <form action="/items" method="post" enctype="multipart/form-data">
+                <form action="{{ route('items.create') }}" method="post" enctype="multipart/form-data">
                 	@csrf
                     <div class="form-group">
                         <div class="control-label" for="category_id">Category</div>

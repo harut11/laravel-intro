@@ -20,7 +20,7 @@
 - middleware in more examples
 - ~~route groups~~
 - ~~resource routes~~
-- route names
+- ~~route names~~
 - test api endpoints
 - ~~@each, and other blade directives~~
 - ~~lang examples~~

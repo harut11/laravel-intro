@@ -7,7 +7,7 @@
             <div class="card-header">Edit Item</div>
 
             <div class="card-body">
-                <form action="/items/{{ $model->id }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('items.update', $model->id) }}" method="post" enctype="multipart/form-data">
                 	@csrf
                     @method('put')
                 	<div class="form-group">
