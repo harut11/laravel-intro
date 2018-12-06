@@ -29,6 +29,9 @@
                         <div class="row">
                             @each('item._item', $models, 'model', 'item._empty')
                         </div>
+                        <div class="d-flex mt-3 justify-content-center">
+                            {{ $models->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
