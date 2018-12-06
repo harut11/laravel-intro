@@ -8,17 +8,7 @@
 
             <div class="card-body">
                 <div class="row">
-                    @if($models->count())
-                        @foreach($models as $model)
-                            @include('item._item', ['model' => $model])
-                        @endforeach
-                    @else
-                        <div class="col-sm-12">
-                            <h4 class="text-danger">
-                                No posts found
-                            </h4>
-                        </div>
-                    @endif
+                    @each('item._item', $models, 'model', 'item._empty')
                 </div>
             </div>
         </div>
