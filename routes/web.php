@@ -18,19 +18,19 @@ Route::group(['middleware' => 'lang'], function() {
 	Route::get('terms', 'PublicController@terms');
 	Route::get('privacy', 'PublicController@privacy');
 	Route::get('contact', 'PublicController@contact');
+
+	Route::group(['prefix' => 'items'], function() {
+		Route::get('/', 'ItemController@index');
+		Route::post('/', 'ItemController@store')->middleware('auth');
+		Route::get('create', 'ItemController@create')->middleware('auth');
+		Route::get('edit/{id}', 'ItemController@edit');
+		Route::put('{id}', 'ItemController@update');
+		Route::delete('{id}', 'ItemController@destroy');
+		Route::get('{id}', 'ItemController@show');
+	});
+
+	Auth::routes();
 });
 
 Route::get('change-language/{code}', 'PublicController@changeLanguage');
 
-Route::group(['prefix' => 'items'], function() {
-	Route::get('/', 'ItemController@index');
-	Route::post('/', 'ItemController@store')->middleware('auth');
-	Route::get('create', 'ItemController@create')->middleware('auth');
-	Route::get('edit/{id}', 'ItemController@edit');
-	Route::put('{id}', 'ItemController@update');
-	Route::delete('{id}', 'ItemController@destroy');
-	Route::get('{id}', 'ItemController@show');
-
-});
-
-Auth::routes();

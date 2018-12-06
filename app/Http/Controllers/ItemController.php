@@ -16,8 +16,9 @@ class ItemController extends Controller
     public function index()
     {
         $models = Item::get();
+        $categories = ItemCategory::get();
 
-        return view('item.index', compact('models'));
+        return view('item.index', compact('models', 'categories'));
     }
 
     /**

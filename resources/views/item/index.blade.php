@@ -3,12 +3,33 @@
 @section('content')
 <div class="container">
     <div class="justify-content-center">
-        <div class="card">
-            <div class="card-header">All items</div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header">List of categories</div>
 
-            <div class="card-body">
-                <div class="row">
-                    @each('item._item', $models, 'model', 'item._empty')
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            @foreach($categories as $category)
+                                <li>
+                                    <a href="">
+                                        {{ $category->name }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="card">
+                    <div class="card-header">All items</div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            @each('item._item', $models, 'model', 'item._empty')
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
