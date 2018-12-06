@@ -19,7 +19,7 @@
 - mail
 - middleware in more examples
 - ~~route groups~~
-- resource routes
+- ~~resource routes~~
 - route names
 - test api endpoints
 - ~~@each, and other blade directives~~
