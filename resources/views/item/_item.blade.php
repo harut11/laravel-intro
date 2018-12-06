@@ -7,7 +7,7 @@
     </h4>
     <p>{{ str_limit($model->content, 50) }}</p>
     @auth
-    	<a href="/items/edit/{{ $model->id }}" class="btn btn-warning">Edit</a>
+    	<a href="/items/{{ $model->id }}/edit" class="btn btn-warning">Edit</a>
     	<form action="/items/{{ $model->id }}" method="post" style="display: inline">
     		@csrf
     		@method('delete')
