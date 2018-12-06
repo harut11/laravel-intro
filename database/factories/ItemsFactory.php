@@ -8,7 +8,7 @@ $factory->define(App\Models\Item::class, function (Faker $faker) {
     return [
         'title' => $faker->words(3, true),
 		'content' => $faker->paragraph,
-		'thumbnail' => str_random() . '.jpg',
+		'thumbnail' => 'default.png',
 		'owner_id' => $faker->randomElement($users),
 		'category_id' => $faker->randomElement($categories),
     ];
