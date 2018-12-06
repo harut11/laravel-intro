@@ -58,7 +58,7 @@ class ItemController extends Controller
         $model->thumbnail = $filename;
         $model->save();
 
-        return redirect('/items');
+        return redirect()->route('items.index');
     }
 
     /**
@@ -116,7 +116,7 @@ class ItemController extends Controller
         }
         $model->save();
 
-        return redirect('/items');
+        return redirect()->route('items.index');
     }
 
     /**
@@ -129,6 +129,6 @@ class ItemController extends Controller
     {
         $model = \App\Models\Item::findOrFail($id);
         $model->delete();
-        return redirect('/items');
+        return redirect()->route('items.index');
     }
 }

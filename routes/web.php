@@ -21,14 +21,14 @@ Route::group(['middleware' => 'lang'], function() {
 
 	// Route::resource('items', 'ItemController');
 
-	Route::group(['prefix' => 'items'], function() {
-		Route::get('/', 'ItemController@index')->name('items.index');
-		Route::post('/', 'ItemController@store')->middleware('auth')->name('items.store');
-		Route::get('create', 'ItemController@create')->middleware('auth')->name('items.create');
-		Route::get('{id}/edit', 'ItemController@edit')->name('items.edit');
-		Route::put('{id}', 'ItemController@update')->name('items.update');
-		Route::delete('{id}', 'ItemController@destroy')->name('items.delete');
-		Route::get('{id}', 'ItemController@show')->name('items.show');
+	Route::group(['prefix' => 'ads', 'as' => 'items.'], function() {
+		Route::get('/', 'ItemController@index')->name('index');
+		Route::post('/', 'ItemController@store')->middleware('auth')->name('store');
+		Route::get('create', 'ItemController@create')->middleware('auth')->name('create');
+		Route::get('{id}/edit', 'ItemController@edit')->name('edit');
+		Route::put('{id}', 'ItemController@update')->name('update');
+		Route::delete('{id}', 'ItemController@destroy')->name('delete');
+		Route::get('{id}', 'ItemController@show')->name('show');
 	});
 
 	Auth::routes();
