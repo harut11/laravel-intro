@@ -29,9 +29,13 @@
 - notification
 - queue
 - schedule
+- ~~~MERGE CONFLICTS~~~
 
 ### Examine Packages:
 - doctrine/dbal
 - collective/html
 - debugbar
 - intervention/image
+- cviebrock/sluggable
+
+
