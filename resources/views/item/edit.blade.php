@@ -7,8 +7,9 @@
             <div class="card-header">Edit Item</div>
 
             <div class="card-body">
-                <form action="/items/update/{{ $model->id }}" method="post" enctype="multipart/form-data">
+                <form action="/items/{{ $model->id }}" method="post" enctype="multipart/form-data">
                 	@csrf
+                    @method('put')
                 	<div class="form-group">
                 		<div class="control-label" for="title">Title</div>
                 		<input type="text" class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" name="title" value="{{ $model->title }}">

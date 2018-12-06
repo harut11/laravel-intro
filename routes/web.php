@@ -11,21 +11,26 @@
 |
 */
 
-Route::get('/', 'PublicController@home')->middleware('lang');
-Route::get('home', 'PublicController@home')->name('home')->middleware('lang');
-Route::get('about', 'PublicController@about')->middleware('lang');
-Route::get('terms', 'PublicController@terms')->middleware('lang');
-Route::get('privacy', 'PublicController@privacy')->middleware('lang');
-Route::get('contact', 'PublicController@contact')->middleware('lang');
+Route::group(['middleware' => 'lang'], function() {
+	Route::get('/', 'PublicController@home');
+	Route::get('home', 'PublicController@home')->name('home');
+	Route::get('about', 'PublicController@about');
+	Route::get('terms', 'PublicController@terms');
+	Route::get('privacy', 'PublicController@privacy');
+	Route::get('contact', 'PublicController@contact');
+});
 
 Route::get('change-language/{code}', 'PublicController@changeLanguage');
 
-Route::get('items', 'ItemController@index');
-Route::post('items', 'ItemController@store')->middleware('auth');
-Route::get('items/create', 'ItemController@create')->middleware('auth');
-Route::get('items/edit/{id}', 'ItemController@edit');
-Route::post('items/update/{id}', 'ItemController@update');
-Route::get('items/destroy/{id}', 'ItemController@destroy');
-Route::get('items/{id}', 'ItemController@show');
+Route::group(['prefix' => 'items'], function() {
+	Route::get('/', 'ItemController@index');
+	Route::post('/', 'ItemController@store')->middleware('auth');
+	Route::get('create', 'ItemController@create')->middleware('auth');
+	Route::get('edit/{id}', 'ItemController@edit');
+	Route::put('{id}', 'ItemController@update');
+	Route::delete('{id}', 'ItemController@destroy');
+	Route::get('{id}', 'ItemController@show');
+
+});
 
 Auth::routes();
