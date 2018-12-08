@@ -22,7 +22,7 @@ Route::group(['middleware' => 'lang'], function() {
 	// Route::resource('items', 'ItemController');
 
 	Route::group(['prefix' => 'ads', 'as' => 'items.'], function() {
-		Route::get('/', 'ItemController@index')->name('index');
+		Route::get('/{owner?}', 'ItemController@index')->name('index')->where(['owner' => 'mine']);
 		Route::post('/', 'ItemController@store')->middleware('auth')->name('store');
 		Route::get('create', 'ItemController@create')->middleware('auth')->name('create');
 		Route::get('{id}/edit', 'ItemController@edit')->name('edit');

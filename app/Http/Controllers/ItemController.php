@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\ItemCategory;
@@ -13,9 +14,13 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($owner = null)
     {
-        $models = Item::paginate(32);
+        if ($owner && Auth::check()) {
+            $models = Auth::user()->items()->paginate(12);
+        } else {
+            $models = Item::paginate(12);
+        }
         $categories = ItemCategory::get();
 
         return view('item.index', compact('models', 'categories'));
