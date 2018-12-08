@@ -5,7 +5,7 @@
 - display small images in items listing
 - ~~add edit functionality for items~~
 - ~~on update delete old image~~
-- user can only edit / delete his own items
+- ~~user can only edit / delete his own items~~
 - facebook login
 
 #### Admin functionalities

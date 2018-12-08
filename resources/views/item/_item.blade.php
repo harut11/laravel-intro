@@ -6,7 +6,7 @@
         </a>
     </h4>
     <p>{{ str_limit($model->content, 50) }}</p>
-    @auth
+    @if (Auth::check() && $model->owner_id === Auth::id())
     	<a href="{{ route('items.edit', $model->id) }}" class="btn btn-warning">Edit</a>
     	<form action="{{ route('items.delete', $model->id) }}" method="post" style="display: inline">
     		@csrf

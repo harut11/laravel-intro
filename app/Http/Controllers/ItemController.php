@@ -99,7 +99,7 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        $model = \App\Models\Item::findOrFail($id);
+        $model = $this->findOwnerModel($id);
         return view('item.edit', compact('model'));
     }
 
@@ -118,7 +118,7 @@ class ItemController extends Controller
             'thumbnail' => 'image|max:2048',
         ]);
 
-        $model = \App\Models\Item::findOrFail($id);
+        $model = $this->findOwnerModel($id);
 
         $model->title = $request->get('title');
         $model->content = $request->get('content');
@@ -145,8 +145,17 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        $model = \App\Models\Item::findOrFail($id);
+        $model = $this->findOwnerModel($id);
         $model->delete();
         return redirect()->route('items.index');
+    }
+
+    private function findOwnerModel($id)
+    {
+        $model = \App\Models\Item::findOrFail($id);
+        if ($model->owner_id !== Auth::id()) {
+            abort(403);
+        }
+        return $model;
     }
 }
