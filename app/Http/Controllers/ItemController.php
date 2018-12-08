@@ -17,10 +17,16 @@ class ItemController extends Controller
     public function index($owner = null)
     {
         if ($owner && Auth::check()) {
-            $models = Auth::user()->items()->paginate(12);
+            $query = Auth::user()->items();
         } else {
-            $models = Item::paginate(12);
+            $query = Item::query();
         }
+
+        if (request()->has('category_id')) {
+            $query = $query->where('category_id', '=', request()->get('category_id'));
+        }
+
+        $models = $query->paginate(12);
         $categories = ItemCategory::get();
 
         return view('item.index', compact('models', 'categories'));
