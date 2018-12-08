@@ -15,4 +15,9 @@ class Item extends Model
         }
     	parent::delete();
     }
+
+    public function owner()
+    {
+    	return $this->belongsTo(User::class, 'owner_id', 'id');
+    }
 }

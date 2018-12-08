@@ -33,7 +33,7 @@ class ItemController extends Controller
             });
         }
 
-        $models = $query->paginate(12);
+        $models = $query->with('owner')->paginate(100000);
         $categories = ItemCategory::get();
 
         return view('item.index', compact('models', 'categories'));
