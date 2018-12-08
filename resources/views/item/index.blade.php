@@ -12,7 +12,11 @@
                         <ul class="list-unstyled">
                             @foreach($categories as $category)
                                 <li>
-                                    <a href="{{ route('items.index', ['owner' => request()->route('owner'), 'category_id' => $category->id]) }}">
+                                    <a href="{{ route('items.index', [
+                                        'owner' => request()->route('owner'),
+                                        'category_id' => $category->id,
+                                        'search' => request()->get('search')
+                                    ]) }}">
                                         {{ $category->name }}
                                     </a>
                                 </li>

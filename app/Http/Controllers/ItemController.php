@@ -25,6 +25,13 @@ class ItemController extends Controller
         if (request()->has('category_id')) {
             $query = $query->where('category_id', '=', request()->get('category_id'));
         }
+        if (request()->has('search')) {
+            $query = $query->where(function($query) {
+                $s = '%' . request()->get('search') . '%';
+                $query->where('title', 'like', $s)
+                    ->orWhere('content', 'like', $s);
+            });
+        }
 
         $models = $query->paginate(12);
         $categories = ItemCategory::get();
