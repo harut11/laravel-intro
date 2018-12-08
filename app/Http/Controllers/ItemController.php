@@ -76,7 +76,7 @@ class ItemController extends Controller
         $model->thumbnail = $filename;
         $model->save();
 
-        return redirect()->route('items.index');
+        return redirect()->route('items.index', 'mine');
     }
 
     /**
