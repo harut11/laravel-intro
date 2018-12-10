@@ -7,7 +7,7 @@
             <div class="card-header">{{ $model->title }}</div>
 
             <div class="card-body">
-                {{ $model->content }}
+                {!!html_entity_decode($model->content)!!}
             </div>
         </div>
     </div>
