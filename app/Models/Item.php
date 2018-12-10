@@ -20,4 +20,14 @@ class Item extends Model
     {
     	return $this->belongsTo(User::class, 'owner_id', 'id');
     }
+
+    public function getSlugAttribute()
+    {
+        return str_slug($this->title);
+    }
+
+    public function getUrlAttribute()
+    {
+        return action('ItemController@show', [$this->id, $this->slug]);
+    }
 }

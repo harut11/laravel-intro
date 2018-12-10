@@ -85,9 +85,12 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $slug = '')
     {
         $model = Item::findOrFail($id);
+        if ($slug !== $model->slug) {
+            return redirect()->to($model->url);
+        }
         return view('item.show', compact('model'));
     }
 

@@ -28,7 +28,7 @@ Route::group(['middleware' => 'lang'], function() {
 		Route::get('{id}/edit', 'ItemController@edit')->name('edit');
 		Route::put('{id}', 'ItemController@update')->name('update');
 		Route::delete('{id}', 'ItemController@destroy')->name('delete');
-		Route::get('{id}', 'ItemController@show')->name('show');
+		Route::get('{id}/{slug?}', 'ItemController@show')->name('show');
 	});
 
 	Auth::routes();
