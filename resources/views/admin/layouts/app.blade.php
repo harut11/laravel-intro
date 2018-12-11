@@ -52,5 +52,6 @@
 
     <!-- Toastr -->
     <script src="{{ asset('js/toastr.min.js') }}"></script>
+    <script src="{{ asset('js/helpers.js') }}"></script>
 </body>
 </html>
