@@ -9,7 +9,7 @@
 - facebook login
 
 #### Admin functionalities
-- middleware for admin
+- ~~middleware for admin~~
 - crud for item categories
 
 ### Examine functionalities:
@@ -17,17 +17,20 @@
 - ~~accessors / mutators~~
 - ~~model events / observers~~
 - mail
-- middleware in more examples
+- ~~middleware in more examples~~
 - ~~route groups~~
 - ~~resource routes~~
 - ~~route names~~
 - test api endpoints
+- fillable / mass assignment
 - ~~@each, and other blade directives~~
 - ~~lang examples~~
 - custom console commands
 - events & listeners
-- make:* examine all
+- ~~make:* examine all~~
 - notification
+- request objects
+- custom validation
 - queue
 - schedule
 - ~~MERGE CONFLICTS~~
