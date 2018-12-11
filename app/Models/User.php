@@ -76,4 +76,9 @@ class User extends Authenticatable
             return $carbon->diffInYears();
         }
     }
+
+    public function setDetailsAttribute($attributes)
+    {
+        $this->details()->update($attributes);
+    }
 }

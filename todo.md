@@ -14,8 +14,8 @@
 
 ### Examine functionalities:
 - ~~relations~~
-- accessors / mutators
-- model events / observers
+- ~~accessors / mutators~~
+- ~~model events~~ / observers
 - mail
 - middleware in more examples
 - ~~route groups~~
