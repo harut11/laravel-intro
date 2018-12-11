@@ -30,4 +30,9 @@ class Item extends Model
     {
         return action('ItemController@show', [$this->id, $this->slug]);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(ItemCategory::class);
+    }
 }
