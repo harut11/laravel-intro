@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
 			'name' => 'Admin',
 			'email' => 'admin@laravel.com',
 			'password' => bcrypt('secret'),
+            'admin' => 1,
         ]);
 		factory(User::class, 30)->create()->each(function($user) {
             $details = factory(UserDetails::class)->make();
