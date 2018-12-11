@@ -35,5 +35,17 @@ Route::group(['middleware' => 'lang'], function() {
 	Auth::routes();
 });
 
+Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function() {
+	Route::group(['prefix' => 'item', 'as' => 'item.'], function() {
+		Route::get('/', 'ItemController@index')->name('index');
+		Route::get('create', 'ItemController@create')->name('create');
+		Route::post('/', 'ItemController@store')->name('store');
+		Route::get('edit/{id}', 'ItemController@edit')->name('edit');
+		Route::put('{id}', 'ItemController@update')->name('update');
+		Route::delete('{id}', 'ItemController@destroy')->name('delete');
+		Route::get('{id}', 'ItemController@show')->name('show');
+	});
+});
+
 Route::get('change-language/{code}', 'PublicController@changeLanguage')->name('change-language');
 
