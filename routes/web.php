@@ -19,8 +19,6 @@ Route::group(['middleware' => 'lang'], function() {
 	Route::get('privacy', 'PublicController@privacy');
 	Route::get('contact', 'PublicController@contact');
 
-	// Route::resource('items', 'ItemController');
-
 	Route::group(['prefix' => 'ads', 'as' => 'items.'], function() {
 		Route::get('/{owner?}', 'ItemController@index')->name('index')->where(['owner' => 'mine']);
 		Route::post('/', 'ItemController@store')->middleware('auth')->name('store');
@@ -30,6 +28,9 @@ Route::group(['middleware' => 'lang'], function() {
 		Route::delete('{id}', 'ItemController@destroy')->name('delete');
 		Route::get('{id}/{slug?}', 'ItemController@show')->name('show');
 	});
+
+	Route::get('profile', 'ProfileController@edit')->name('user.profile')->middleware('auth');
+	Route::put('profile', 'ProfileController@update')->name('user.profile')->middleware('auth');
 
 	Auth::routes();
 });

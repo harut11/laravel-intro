@@ -11,14 +11,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public static function boot()
-    {
-        self::created(function($model) {
-            $model->details()->save(new UserDetails());
-        });
-        parent::boot();
-    }
-
     /**
      * The attributes that are mass assignable.
      *
