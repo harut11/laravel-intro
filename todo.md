@@ -13,7 +13,7 @@
 - crud for item categories
 
 ### Examine functionalities:
-- relations
+- ~~relations~~
 - accessors / mutators
 - model events / observers
 - mail

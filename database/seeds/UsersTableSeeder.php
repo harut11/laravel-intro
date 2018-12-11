@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\UserDetails;
 
 class UsersTableSeeder extends Seeder
 {
@@ -17,6 +18,9 @@ class UsersTableSeeder extends Seeder
 			'email' => 'admin@laravel.com',
 			'password' => bcrypt('secret'),
         ]);
-		factory(App\Models\User::class, 30)->create();
+		factory(User::class, 30)->create()->each(function($user) {
+            $details = factory(UserDetails::class)->make();
+            $user->details()->update($details->getAttributes());
+        });
     }
 }
