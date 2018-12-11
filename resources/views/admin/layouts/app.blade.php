@@ -27,9 +27,15 @@
         @include('admin.layouts.sidebar')
 
         <div id="page-wrapper" class="gray-bg dashbard-1">
-        <div class="row border-bottom">
-        @include('admin.layouts.navbar-header')
-        </div>
+            <div class="row border-bottom">
+                @include('admin.layouts.navbar-header')
+            </div>
+
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">@yield('content')</div>
+                </div>
+            </div>
 
         </div>
     </div>
