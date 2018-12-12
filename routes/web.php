@@ -45,6 +45,16 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.', 'n
 		Route::delete('{id}', 'ItemController@destroy')->name('delete');
 		Route::get('{id}', 'ItemController@show')->name('show');
 	});
+
+	Route::group(['prefix' => 'category', 'as' => 'category.'], function() {
+		Route::get('/', 'CategoryController@index')->name('index');
+		Route::get('create', 'CategoryController@create')->name('create');
+		Route::post('/', 'CategoryController@store')->name('store');
+		Route::get('edit/{id}', 'CategoryController@edit')->name('edit');
+		Route::put('{id}', 'CategoryController@update')->name('update');
+		Route::delete('{id}', 'CategoryController@destroy')->name('delete');
+		Route::get('{id}', 'CategoryController@show')->name('show');
+	});
 });
 
 Route::get('change-language/{code}', 'PublicController@changeLanguage')->name('change-language');
