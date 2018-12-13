@@ -1,8 +1,8 @@
 ## TODO-LIST
 
 ### Create functionalities:
-- store small version for images
-- display small images in items listing
+- ~~store small version for images~~
+- ~~display small images in items listing~~
 - ~~add edit functionality for items~~
 - ~~on update delete old image~~
 - ~~user can only edit / delete his own items~~
@@ -39,5 +39,5 @@
 - doctrine/dbal
 - collective/html
 - debugbar
-- intervention/image
+- ~~intervention/image~~
 - ~~cviebrock/sluggable~~

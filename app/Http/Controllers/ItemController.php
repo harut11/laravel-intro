@@ -103,7 +103,7 @@ class ItemController extends Controller
     {
         $model = $this->findOwnerModel($id)
             ->update($request->only('title', 'content', 'thumbnail'));
-        return redirect()->route('items.index');
+        return redirect()->route('items.index', 'mine');
     }
 
     /**

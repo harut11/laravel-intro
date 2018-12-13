@@ -16,9 +16,8 @@ class Item extends Model
 
     public function delete()
     {
-		$path = public_path('uploads/' . $this->thumbnail);
-        if (File::exists($path)) {
-            File::delete($path);
+        if (File::exists($this->thumb_path)) {
+            File::delete($this->thumb_path);
         }
     	parent::delete();
     }
@@ -37,9 +36,8 @@ class Item extends Model
     {
         if ($file) {
             if (!empty($this->attributes['thumbnail'])) {
-                $old_file_path = public_path('uploads') . '/' . $this->attributes['thumbnail'];
-                if (\File::exists($old_file_path)) {
-                    \File::delete($old_file_path);
+                if (\File::exists($this->thumb_path)) {
+                    \File::delete($this->thumb_path);
                 }
             }
             $filename = str_random() . '.' . $file->getClientOriginalExtension();
@@ -50,6 +48,30 @@ class Item extends Model
             $image->fit(400, 300)->save($thumb_path);
             $this->attributes['thumbnail'] = $filename;
         }
+    }
+
+    public function getThumbUrlAttribute()
+    {
+        if (empty($this->attributes['thumbnail'])) {
+            return null;
+        }
+        return asset('uploads/' . $this->attributes['thumbnail']);
+    }
+
+    public function getSmallThumbUrlAttribute()
+    {
+        if (empty($this->attributes['thumbnail'])) {
+            return null;
+        }
+        return asset('uploads/thumbs/' . $this->attributes['thumbnail']);
+    }
+
+    public function getThumbPathAttribute()
+    {
+        if (empty($this->attributes['thumbnail'])) {
+            return null;
+        }
+        return public_path('uploads/' . $this->attributes['thumbnail']);
     }
 
     /**

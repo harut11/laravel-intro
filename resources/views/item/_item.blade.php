@@ -1,5 +1,5 @@
 <div class="col-sm-3">
-    <img src="{{ asset('/uploads/thumbs/' . $model->thumbnail) }}" class="img-fluid">
+    <img src="{{ $model->small_thumb_url }}" class="img-fluid">
     <h4>
         <a href="{{ route('items.show', $model->slug) }}">
             {{ $model->title }}
