@@ -10,7 +10,7 @@
 
 #### Admin functionalities
 - ~~middleware for admin~~
-- crud for item categories
+- ~~crud for item categories~~
 
 ### Examine functionalities:
 - ~~relations~~
@@ -22,14 +22,14 @@
 - ~~resource routes~~
 - ~~route names~~
 - test api endpoints
-- fillable / mass assignment
+- ~~fillable / mass assignment~~
 - ~~@each, and other blade directives~~
 - ~~lang examples~~
 - custom console commands
 - events & listeners
 - ~~make:* examine all~~
 - notification
-- request objects
+- ~~request objects~~
 - custom validation
 - queue
 - schedule
@@ -40,6 +40,4 @@
 - collective/html
 - debugbar
 - intervention/image
-- cviebrock/sluggable
-
-
+- ~~cviebrock/sluggable~~
