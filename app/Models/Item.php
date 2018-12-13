@@ -4,9 +4,12 @@ namespace App\Models;
 
 use File;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Item extends Model
 {
+    use Sluggable;
+
     public function delete()
     {
 		$path = public_path('uploads/' . $this->thumbnail);
@@ -25,4 +28,17 @@ class Item extends Model
     {
         return $this->belongsTo(ItemCategory::class);
     }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    abstract public function sluggable() {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }: array
 }
