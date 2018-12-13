@@ -13,16 +13,16 @@ class ItemCategoriesTableSeeder extends Seeder
     public function run()
     {
     	$data = [
-    		'Անշարժ գույք',
-			'Տրանսպորտ',
-			'Էլեկտրոնիկա',
-			'Կենցաղային տեխնիկա',
-			'Ամեն ինչ տան համար',
-			'Նորաձևություն եւ Ոճ',
-			'Մանկական աշխարհ',
-			'Մշակույթ և հոբբի',
-			'Կենդանիներ և բույսեր',
-			'Գործիքներ և նյութեր',
+    		'Real Estate',
+			'Transport',
+			'Electronics',
+			'Household Appliances',
+			'Everything for home',
+			'Clothing and Fashion',
+			'Children\'s world',
+			'Culture and Hobby',
+			'Animals and plants',
+			'Tools and Materials',
     	];
     	foreach ($data as $category) {
     		ItemCategory::create([
