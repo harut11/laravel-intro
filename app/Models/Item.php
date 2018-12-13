@@ -11,6 +11,8 @@ class Item extends Model
 {
     use Sluggable;
 
+    protected $fillable = ['title', 'content', 'thumbnail', 'category_id'];
+
     public function delete()
     {
 		$path = public_path('uploads/' . $this->thumbnail);

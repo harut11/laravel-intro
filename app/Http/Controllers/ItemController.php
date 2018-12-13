@@ -35,8 +35,7 @@ class ItemController extends Controller
             });
         }
 
-
-        $models = $query->with('owner')->paginate(100000);
+        $models = $query->with('owner')->paginate(20);
         $categories = ItemCategory::get();
 
         return view('item.index', compact('models', 'categories'));
@@ -67,14 +66,8 @@ class ItemController extends Controller
             'thumbnail' => 'image|max:102400',
             'category_id' => 'required|in:' . ItemCategory::get()->implode('id', ','),
         ]);
-        $model = new Item();
-
-        $model->title = $request->get('title');
-        $model->content = $request->get('content');
-        $model->owner_id = \Auth::user()->id;
-        $model->category_id = $request->get('category_id');
-        $model->thumbnail = $request->file('thumbnail');
-        $model->save();
+        $model = new Item($request->only('title', 'content', 'category_id', 'thumbnail'));
+        Auth::user()->items()->save($model);
 
         return redirect()->route('items.index', 'mine');
     }
@@ -118,13 +111,8 @@ class ItemController extends Controller
             'thumbnail' => 'image|max:2048',
         ]);
 
-        $model = $this->findOwnerModel($id);
-
-        $model->title = $request->get('title');
-        $model->content = $request->get('content');
-        $model->thumbnail = $request->file('thumbnail');
-        $model->save();
-
+        $model = $this->findOwnerModel($id)
+            ->update($request->only('title', 'content', 'thumbnail'));
         return redirect()->route('items.index');
     }
 
