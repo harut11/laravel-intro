@@ -14,7 +14,6 @@
                                 <li>
                                     <a href="{{ route('items.index', [
                                         'owner' => request()->route('owner'),
-                                        $category->slug,
                                         'search' => request()->get('search')
                                     ]) }}">
                                         {{ $category->name }}
