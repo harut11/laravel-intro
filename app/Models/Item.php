@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use File;
+use Image;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -42,7 +43,11 @@ class Item extends Model
                 }
             }
             $filename = str_random() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads'), $filename);
+            $image = Image::make($file);
+            $path = public_path('uploads/' . $filename);
+            $thumb_path = public_path('uploads/thumbs/' . $filename);
+            $image->insert('http://tco.am/img/theme/logo.png')->save($path);
+            $image->fit(400, 300)->save($thumb_path);
             $this->attributes['thumbnail'] = $filename;
         }
     }
