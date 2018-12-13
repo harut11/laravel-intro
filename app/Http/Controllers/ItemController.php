@@ -14,16 +14,18 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($owner = null)
+    public function index($owner = 'all', $category_slug = null)
     {
-        if ($owner && Auth::check()) {
+        if ($owner === 'mine' && Auth::check()) {
             $query = Auth::user()->items();
         } else {
             $query = Item::query();
         }
 
-        if (request()->has('category_id')) {
-            $query = $query->where('category_id', '=', request()->get('category_id'));
+        if ($category_slug) {
+            $query = $query->select(['items.*'])
+                ->leftJoin('item_categories', 'item_categories.id', 'items.category_id')
+                ->where('item_categories.slug', '=', $category_slug);
         }
         if (request()->has('search')) {
             $query = $query->where(function($query) {
@@ -32,6 +34,7 @@ class ItemController extends Controller
                     ->orWhere('content', 'like', $s);
             });
         }
+
 
         $models = $query->with('owner')->paginate(100000);
         $categories = ItemCategory::get();
@@ -70,10 +73,7 @@ class ItemController extends Controller
         $model->content = $request->get('content');
         $model->owner_id = \Auth::user()->id;
         $model->category_id = $request->get('category_id');
-        $file = $request->file('thumbnail');
-        $filename = str_random() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('uploads'), $filename);
-        $model->thumbnail = $filename;
+        $model->thumbnail = $request->file('thumbnail');
         $model->save();
 
         return redirect()->route('items.index', 'mine');
@@ -82,12 +82,12 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $model = Item::findOrFail($id);
+        $model = Item::where('slug', '=', $slug)->firstOrFail();
         return view('item.show', compact('model'));
     }
 
@@ -122,16 +122,7 @@ class ItemController extends Controller
 
         $model->title = $request->get('title');
         $model->content = $request->get('content');
-        $file = $request->file('thumbnail');
-        if ($file) {
-            $filename = str_random() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads'), $filename);
-            $old_file_path = public_path('uploads') . '/' . $model->thumbnail;
-            if (\File::exists($old_file_path)) {
-                \File::delete($old_file_path);
-            }
-            $model->thumbnail = $filename;
-        }
+        $model->thumbnail = $request->file('thumbnail');
         $model->save();
 
         return redirect()->route('items.index');

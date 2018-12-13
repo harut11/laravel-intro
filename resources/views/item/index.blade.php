@@ -13,7 +13,8 @@
                             @foreach($categories as $category)
                                 <li>
                                     <a href="{{ route('items.index', [
-                                        'owner' => request()->route('owner'),
+                                        'category_slug' => $category->slug,
+                                        'owner' => request()->route('owner', 'all'),
                                         'search' => request()->get('search')
                                     ]) }}">
                                         {{ $category->name }}

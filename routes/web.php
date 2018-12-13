@@ -20,13 +20,13 @@ Route::group(['middleware' => 'lang'], function() {
 	Route::get('contact', 'PublicController@contact');
 
 	Route::group(['prefix' => 'ads', 'as' => 'items.'], function() {
-		Route::get('/{owner?}', 'ItemController@index')->name('index')->where(['owner' => 'mine']);
+		Route::get('{owner?}/{category_slug?}/', 'ItemController@index')->name('index')->where(['owner' => 'mine|all']);
 		Route::post('/', 'ItemController@store')->middleware('auth')->name('store');
 		Route::get('create', 'ItemController@create')->middleware('auth')->name('create');
 		Route::get('{id}/edit', 'ItemController@edit')->name('edit');
 		Route::put('{id}', 'ItemController@update')->name('update');
 		Route::delete('{id}', 'ItemController@destroy')->name('delete');
-		Route::get('{id}/{slug?}', 'ItemController@show')->name('show');
+		Route::get('{slug}', 'ItemController@show')->name('show');
 	});
 
 	Route::get('profile', 'ProfileController@edit')->name('user.profile')->middleware('auth');

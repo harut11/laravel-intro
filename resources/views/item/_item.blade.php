@@ -1,7 +1,7 @@
 <div class="col-sm-3">
     <img src="{{ asset('/uploads/' . $model->thumbnail) }}" class="img-fluid">
     <h4>
-        <a href="{{ route('items.show', $model->id) }}">
+        <a href="{{ route('items.show', $model->slug) }}">
             {{ $model->title }}
         </a>
     </h4>

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use File;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
@@ -27,6 +28,21 @@ class Item extends Model
     public function category()
     {
         return $this->belongsTo(ItemCategory::class);
+    }
+
+    public function setThumbnailAttribute($file)
+    {
+        if ($file) {
+            if (!empty($this->attributes['thumbnail'])) {
+                $old_file_path = public_path('uploads') . '/' . $this->attributes['thumbnail'];
+                if (\File::exists($old_file_path)) {
+                    \File::delete($old_file_path);
+                }
+            }
+            $filename = str_random() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads'), $filename);
+            $this->attributes['thumbnail'] = $filename;
+        }
     }
 
     /**

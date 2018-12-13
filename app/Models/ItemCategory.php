@@ -8,10 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ItemCategory extends Model
 {
     use Sluggable;
-    public function getSlugAttribute(): string
-    {
-    	return str_slug($this->name);
-    }
 
     /**
      * Return the sluggable configuration array for this model.
