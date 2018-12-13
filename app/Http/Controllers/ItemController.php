@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\ItemStoreRequest;
+use App\Http\Requests\ItemUpdateRequest;
 use App\Models\Item;
 use App\Models\ItemCategory;
 
@@ -58,14 +60,8 @@ class ItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ItemStoreRequest $request)
     {
-        $this->validate($request, [
-            'title' => 'required|string|max:200|min:3',
-            'content' => 'required|string|max:2000|min:3',
-            'thumbnail' => 'image|max:102400',
-            'category_id' => 'required|in:' . ItemCategory::get()->implode('id', ','),
-        ]);
         $model = new Item($request->only('title', 'content', 'category_id', 'thumbnail'));
         Auth::user()->items()->save($model);
 
@@ -103,14 +99,8 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ItemUpdateRequest $request, $id)
     {
-        $this->validate($request, [
-            'title' => 'required|string|max:200|min:3',
-            'content' => 'required|string|max:200|min:3',
-            'thumbnail' => 'image|max:2048',
-        ]);
-
         $model = $this->findOwnerModel($id)
             ->update($request->only('title', 'content', 'thumbnail'));
         return redirect()->route('items.index');
