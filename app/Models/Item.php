@@ -26,8 +26,8 @@ class Item extends Model
         if (File::exists($this->thumb_path)) {
             File::delete($this->thumb_path);
         }
-        if (File::exists($this->thumb_small_path)) {
-            File::delete($this->thumb_small_path);
+        if (File::exists($this->small_thumb_path)) {
+            File::delete($this->small_thumb_path);
         }
     }
 
@@ -67,7 +67,11 @@ class Item extends Model
         if (empty($this->attributes['thumbnail'])) {
             return null;
         }
-        return asset('uploads/thumbs/' . $this->attributes['thumbnail']);
+        $thumb_url = asset('uploads/thumbs/' . $this->attributes['thumbnail']);
+        if (!File::exists($this->small_thumb_path)) {
+            return asset('img/loading.gif');
+        }
+        return $thumb_url;
     }
 
     public function getThumbPathAttribute()
@@ -78,7 +82,7 @@ class Item extends Model
         return public_path('uploads/' . $this->attributes['thumbnail']);
     }
 
-    public function getThumbSmallPathAttribute()
+    public function getSmallThumbPathAttribute()
     {
         if (empty($this->attributes['thumbnail'])) {
             return null;

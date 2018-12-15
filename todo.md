@@ -16,7 +16,7 @@
 - ~~relations~~
 - ~~accessors / mutators~~
 - ~~model events / observers~~
-- mail
+- ~~mail~~
 - ~~middleware in more examples~~
 - ~~route groups~~
 - ~~resource routes~~
