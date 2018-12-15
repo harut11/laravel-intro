@@ -8,6 +8,7 @@ use App\Models\Item;
 use App\Models\ItemCategory;
 use Auth;
 use Illuminate\Http\Request;
+use Validator;
 
 class ItemController extends Controller
 {
@@ -101,6 +102,13 @@ class ItemController extends Controller
      */
     public function update(ItemUpdateRequest $request, $id)
     {
+        // Custom validation example
+        // $validator = Validator::make($request->all(), $rules);
+        // if ($validator->fails()) {
+        //     return redirect()->back()->with(['error' => 'You have some errors'])
+        //         ->withErrors($validator)
+        //         ->withOldInput();
+        // }
         $model = $this->findOwnerModel($id)
             ->update($request->only('title', 'content', 'thumbnail'));
         return redirect()->route('items.index', 'mine');
