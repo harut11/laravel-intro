@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Illuminate\Http\Request;
 use App\Http\Requests\ItemStoreRequest;
 use App\Http\Requests\ItemUpdateRequest;
 use App\Models\Item;
 use App\Models\ItemCategory;
+use Auth;
+use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
@@ -116,7 +116,7 @@ class ItemController extends Controller
     {
         $model = $this->findOwnerModel($id);
         $model->delete();
-        return redirect()->route('items.index');
+        return redirect()->route('items.index', 'mine');
     }
 
     private function findOwnerModel($id)

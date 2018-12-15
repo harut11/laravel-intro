@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use File;
-use Image;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Database\Eloquent\Model;
+use App\Jobs\ImageResizeJob;
 use Cviebrock\EloquentSluggable\Sluggable;
+use File;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
+use Image;
 
 class Item extends Model
 {
@@ -16,10 +17,18 @@ class Item extends Model
 
     public function delete()
     {
+        $this->deleteImages();
+    	parent::delete();
+    }
+
+    protected function deleteImages()
+    {
         if (File::exists($this->thumb_path)) {
             File::delete($this->thumb_path);
         }
-    	parent::delete();
+        if (File::exists($this->thumb_small_path)) {
+            File::delete($this->thumb_small_path);
+        }
     }
 
     public function owner()
@@ -36,17 +45,12 @@ class Item extends Model
     {
         if ($file) {
             if (!empty($this->attributes['thumbnail'])) {
-                if (\File::exists($this->thumb_path)) {
-                    \File::delete($this->thumb_path);
-                }
+                $this->deleteImages();
             }
             $filename = str_random() . '.' . $file->getClientOriginalExtension();
-            $image = Image::make($file);
-            $path = public_path('uploads/' . $filename);
-            $thumb_path = public_path('uploads/thumbs/' . $filename);
-            $image->insert('http://tco.am/img/theme/logo.png')->save($path);
-            $image->fit(400, 300)->save($thumb_path);
+            $file->move(public_path('uploads/original'), $filename);
             $this->attributes['thumbnail'] = $filename;
+            dispatch(new ImageResizeJob($filename));
         }
     }
 
@@ -72,6 +76,14 @@ class Item extends Model
             return null;
         }
         return public_path('uploads/' . $this->attributes['thumbnail']);
+    }
+
+    public function getThumbSmallPathAttribute()
+    {
+        if (empty($this->attributes['thumbnail'])) {
+            return null;
+        }
+        return public_path('uploads/thumbs/' . $this->attributes['thumbnail']);
     }
 
     /**
