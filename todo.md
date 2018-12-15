@@ -1,18 +1,21 @@
 ## TODO-LIST
 
 ### Create functionalities:
+- facebook login
 - ~~store small version for images~~
 - ~~display small images in items listing~~
 - ~~add edit functionality for items~~
 - ~~on update delete old image~~
 - ~~user can only edit / delete his own items~~
-- facebook login
 
 #### Admin functionalities
 - ~~middleware for admin~~
 - ~~crud for item categories~~
 
 ### Examine functionalities:
+- notification
+- practice with REST api (standart style)
+- events & listeners
 - ~~relations~~
 - ~~accessors / mutators~~
 - ~~model events / observers~~
@@ -21,16 +24,13 @@
 - ~~route groups~~
 - ~~resource routes~~
 - ~~route names~~
-- practice with REST api (standart style)
 - ~~fillable / mass assignment~~
 - ~~@each, and other blade directives~~
 - ~~lang examples~~
 - ~~custom console commands~~
-- events & listeners
 - ~~make:* examine all~~
-- notification
 - ~~request objects~~
-- custom validation
+- ~~custom validation~~
 - ~~queue~~
 - ~~schedule~~
 - ~~MERGE CONFLICTS~~

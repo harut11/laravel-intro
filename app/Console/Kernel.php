@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('listam:crawllist --category=54')
                  ->hourly();
         $schedule->command('listam:crawllist --category=17')
-                 ->every15Minutes();
+                 ->everyFifteenMinutes();
     }
 
     /**

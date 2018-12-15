@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('test', 'TestController@form')->name('test.form');
+Route::post('test', 'TestController@submit')->name('test.submit');
+
 Route::group(['middleware' => 'lang'], function() {
 	Route::get('/', 'PublicController@home');
 	Route::get('home', 'PublicController@home')->name('home');
