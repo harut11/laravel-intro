@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Models\Item;
 use App\Observers\UserObserver;
+use App\Observers\ItemObserver;
 use Illuminate\Support\ServiceProvider;
 use Schema;
 
@@ -18,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         User::observe(UserObserver::class);
+        Item::observe(ItemObserver::class);
     }
 
     /**

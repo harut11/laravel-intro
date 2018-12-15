@@ -123,7 +123,9 @@ return [
      * and continue from there.
      */
 
-    'reserved' => null,
+    'reserved' => [
+        'create',
+    ],
 
     /**
      * Whether to update the slug value when a model is being
