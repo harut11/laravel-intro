@@ -21,18 +21,18 @@
 - ~~route groups~~
 - ~~resource routes~~
 - ~~route names~~
-- test api endpoints
+- practice with REST api (standart style)
 - ~~fillable / mass assignment~~
 - ~~@each, and other blade directives~~
 - ~~lang examples~~
-- custom console commands
+- ~~custom console commands~~
 - events & listeners
 - ~~make:* examine all~~
 - notification
 - ~~request objects~~
 - custom validation
-- queue
-- schedule
+- ~~queue~~
+- ~~schedule~~
 - ~~MERGE CONFLICTS~~
 
 ### Examine Packages:

@@ -24,8 +24,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('listam:crawllist --category=54')
+                 ->hourly();
+        $schedule->command('listam:crawllist --category=17')
+                 ->every15Minutes();
     }
 
     /**
