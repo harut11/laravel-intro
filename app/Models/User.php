@@ -73,4 +73,9 @@ class User extends Authenticatable
     {
         $this->details()->update($attributes);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'author_id', 'id');
+    }
 }

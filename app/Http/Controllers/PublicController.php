@@ -13,6 +13,7 @@ class PublicController extends Controller
      */
     public function home()
     {
+        \Debugbar::log(request());
         return view('public.home');
     }
 

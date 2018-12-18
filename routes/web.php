@@ -35,6 +35,8 @@ Route::group(['middleware' => 'lang'], function() {
 	Route::get('profile', 'ProfileController@edit')->name('user.profile')->middleware('auth');
 	Route::put('profile', 'ProfileController@update')->name('user.profile')->middleware('auth');
 
+	Route::post('comment/{id}', 'CommentController@store')->name('comment.store')->middleware('auth');
+
 	Auth::routes();
 });
 
