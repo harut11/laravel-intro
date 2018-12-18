@@ -38,6 +38,6 @@
 ### Examine Packages:
 - doctrine/dbal
 - collective/html
-- debugbar
+- ~~barryvdh/laravel-debugbar~~
 - ~~intervention/image~~
 - ~~cviebrock/sluggable~~
