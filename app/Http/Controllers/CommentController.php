@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CommentAdded;
 use App\Models\Item;
 use App\Models\Comment;
 use Auth;
@@ -20,6 +21,7 @@ class CommentController extends Controller
     		'message' => $request->get('message'),
     	]);
     	Auth::user()->comments()->save($comment);
+        event(new CommentAdded($item, $request->get('message')));
         return redirect()->back();
     }
 }

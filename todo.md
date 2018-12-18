@@ -13,9 +13,9 @@
 - ~~crud for item categories~~
 
 ### Examine functionalities:
-- notification
 - practice with REST api (standart style)
-- events & listeners
+- ~~notification~~
+- ~~events & listeners~~
 - ~~relations~~
 - ~~accessors / mutators~~
 - ~~model events / observers~~
